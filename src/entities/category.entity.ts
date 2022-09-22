@@ -1,6 +1,13 @@
-import { Entity, Column, PrimaryColumn, CreateDateColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  CreateDateColumn,
+  OneToMany,
+} from "typeorm";
 
 import { v4 as uuid } from "uuid";
+import { Video } from "./video.entity";
 
 @Entity("categories")
 export class Category {
@@ -12,6 +19,9 @@ export class Category {
 
   @Column()
   description: string;
+
+  @OneToMany((type) => Video, (video) => video.category, { eager: true })
+  videos: Video[];
 
   @CreateDateColumn()
   created_at: Date;

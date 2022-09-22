@@ -27,7 +27,7 @@ export class Video {
   @Column()
   category_id: string;
 
-  @ManyToOne(() => Category)
+  @ManyToOne((type) => Category, (category) => category.videos)
   @JoinColumn({ name: "category_id" })
   category: Category;
 
